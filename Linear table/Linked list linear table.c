@@ -9,19 +9,17 @@ List FindKth(int K, List PtrL);			//*声明寻找链表线性表第几个的函数*//
 List Insert(int X, int i, List PtrL);	//*声明插入链表线性表函数*//
 List Delet(int i, List PtrL);			//*声明删除链表线性表函数*//
 
-
+typedef List Position;
 
 struct LNode
 {
 	int Date;
-	Last Next;
+	List Next;
 };
 
 void main()
 {
 	struct LNode *stu;
-	
-	stu->Date
  }
  
 List MakeEmpty()
@@ -49,12 +47,12 @@ int Length(List PtrL)
 List Find(int X, List PtrL)
 {
 	List p =PtrL;
-	while(p->Date != X && p->Next != NULL)
+	while(p->Date != X && p)
 	{
 		p = p->Next;
 	}
 	
-	if(p->Next == NULL)
+	if(p)
 	{
 		printf("there is no %d in the list\n", X);
 		return NULL;
@@ -76,11 +74,41 @@ List FindKth(int K, List PtrL);
 	}
 	else
 	{
-		for(;i < K; i++)
+		for(i = 0;i < K; i++)
 		{
 			p = p->Next; 
 		}
 
 		return p;
+	}
+}
+
+bool Insert(List L, int X, Position P){
+	Position temp, pre;
+	for(pre = L; pre&&pre != P&&pre->Next != P; pre = pre->Next) ;
+	if(pre == NULL){
+		return false;
+		printf("your position is out of range!\n");
+	}
+	else{
+		temp = (Positon)malloc(sizeof(struct LNode));
+		temp->Data = X;
+		pre->Next = temp;
+		temp->Next = P;
+		return true;
+	}
+}
+
+bool Delete(List L, Position P){
+	Position pre;
+	for(pre = L; pre&&pre != P&&pre->Next != P; pre=pre->Next) ;
+	if(pre == NULL || P == NULL){
+		return false;
+		printf("your Position is out of range!\n");
+	}
+	else{
+		pre->Next = P->Next;
+		free(P);
+		return true;
 	}
 }

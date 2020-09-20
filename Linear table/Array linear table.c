@@ -54,7 +54,7 @@ List MakeEmpty()
 int Find(int X, List PtrL)
 {
 	int i = 0;
-	while(PtrL->Date[i] != X)//*&&i <= PtrL->Last*//
+	while(PtrL->Date[i] != X && i <= PtrL->Last)//*&&i <= PtrL->Last*//
 	{
 		i++;
 	}
